@@ -1,10 +1,9 @@
 import React from 'react';
 
 function PizzaCard({ title, imageUrl, price, sizes, types }) {
-const typeNames =["тонкое", "традиционное"];
-const [activeType, setActiveType] = React.useState(0);
-const [activeSize, setActiveSize] = React.useState(0);
-
+  const typeNames = ['тонкое', 'традиционное'];
+  const [activeType, setActiveType] = React.useState(0);
+  const [activeSize, setActiveSize] = React.useState(0);
 
 
   return (
@@ -18,13 +17,14 @@ const [activeSize, setActiveSize] = React.useState(0);
       <div className="pizza-block__selector">
         <ul>
           {types.map((item, i) =>
-            <li className={activeType === i ? "active" : ""} onClick={() =>setActiveType(i)}>{typeNames[item]}</li>
+            <li className={activeType === i ? 'active' : ''} onClick={() => setActiveType(i)}
+                key={i}>{typeNames[item]}</li>
           )}
 
         </ul>
         <ul>
           {sizes.map((sizes, i) =>
-            <li className={activeSize === i ? "active" : ""} onClick={() => setActiveSize(i)}>{sizes} см.</li>
+            <li className={activeSize === i ? 'active' : ''} onClick={() => setActiveSize(i)} key={i}>{sizes} см.</li>
           )}
         </ul>
       </div>
