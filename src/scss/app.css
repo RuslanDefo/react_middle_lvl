@@ -252,6 +252,7 @@ a {
   color: #fe5f1e;
   border-bottom: 1px dashed #fe5f1e;
   cursor: pointer;
+  font-size: 22px;
 }
 .sort__popup {
   position: absolute;
