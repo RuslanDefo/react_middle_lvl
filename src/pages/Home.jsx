@@ -12,24 +12,28 @@ function Home() {
   const [pizzas, setPizzas] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [categoryId, setCategoryId] = React.useState(0);
+  const [sortType, setSortType] = React.useState({
+    name: 'популярности',
+    sortProperty: 'rating',
+  });
 
 
   React.useEffect(() => {
-    setLoading(true);
+     setLoading(true);
     async function getPizzas() {
-      const products = await axios.get('https://6342b0e73f83935a78478a41.mockapi.io/api/v1/products');
+      const products = await axios.get(`https://6342b0e73f83935a78478a41.mockapi.io/api/v1/products?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortType.sortProperty.replace('-','')}&order=${sortType.sortProperty.includes('-') ? 'asc' : 'desc'}` );
       setPizzas(products.data);
       setLoading(false);
     }
     getPizzas();
     window.scrollTo(0,0);
-  }, []);
+  }, [categoryId, sortType]);
 
   return (
     <>
       <div className="content__top">
         <Categories value={categoryId} selectCategory={(id) => setCategoryId(id)}/>
-        <Sort/>
+        <Sort value={sortType} selectSort={(id) => setSortType(id)}/>
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
